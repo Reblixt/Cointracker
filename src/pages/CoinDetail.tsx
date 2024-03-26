@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getCoinData, settings } from "../service/storeCoins";
-import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 interface Coin {
   id: number;
@@ -13,6 +14,7 @@ interface Coin {
   circilating_supply: number;
   description: string;
   website: string;
+  circulating_supply: number;
   blockchains: string[];
 }
 
@@ -35,19 +37,27 @@ export const CoinDetail = () => {
 
   return (
     <div className="coin-detail-container">
-      <h1>
-        {coin?.name} ({coin?.symbol})
-      </h1>
-      <img src={coin?.logo} alt={coin?.name} />
-      <p>Description {coin?.description}</p>
-      <p>Price: {coin?.price} USD</p>
-      <p>Market Cap {coin?.market_cap}</p>
-      <p>Circulation {coin?.circilating_supply}</p>
-      {coin?.website ? (
-        <Link to={coin?.website}>Visit website</Link>
-      ) : (
-        <p>Website not available</p>
-      )}
+      <Card style={{ width: "40rem" }}>
+        <Card.Img variant="top" src={coin?.logo} alt={coin?.name} />
+        <Card.Body>
+          <Card.Title>{coin?.name}</Card.Title>
+          <Card.Text>{coin?.description}</Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>Price: {coin?.price} USD</ListGroup.Item>
+          <ListGroup.Item>Market cap: {coin?.market_cap} USD</ListGroup.Item>
+          <ListGroup.Item>
+            In circulation {coin?.circulating_supply} Tokens
+          </ListGroup.Item>
+        </ListGroup>
+        <Card.Body>
+          {coin?.website ? (
+            <Card.Link href={coin?.website}>Website</Card.Link>
+          ) : (
+            <Card.Text>Website not available</Card.Text>
+          )}
+        </Card.Body>
+      </Card>
       <ul>
         <h2>This token exist on these Blockchains</h2>
         {coin?.blockchains.map((chain, index) => <li key={index}>{chain}</li>)}

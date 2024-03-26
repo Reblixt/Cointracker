@@ -1,0 +1,12 @@
+.coin-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,61 @@
+.search-container {
+  gap: 1rem;
+  margin: 1rem;
+  display: flex;
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+  }
+  a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+    border: 2px solid #e5e5e5;
+    padding: 0.5rem;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #e5e5e5;
+    }
+  }
+}
+
+.trending-coins {
+  display: flex;
+  flex-direction: column;
+  li {
+    display: flex;
+
+    a {
+      display: flex;
+      text-decoration: none;
+      justify-content: center;
+      color: black;
+      font-size: 1.5rem;
+      border: 2px solid #e5e5e5;
+      padding: 0.5rem;
+      border-radius: 5px;
+      margin: 10px;
+
+      &:hover {
+        background-color: #e5e5e5;
+      }
+    }
+
+    div {
+      border: 1px solid #e5e5e5;
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

@@ -1,8 +1,10 @@
 @import "content/css/reset";
+@import "bootstrap/scss/bootstrap";
 @import "content/css/style";
-@import "content/css/home";
+@import "content/css/trending";
 @import "content/css/navbar";
 @import "content/css/favCoins";
+@import "content/css/detailCoin";
 .active {
   color: white;
 }
