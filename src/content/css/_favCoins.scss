@@ -1,0 +1,12 @@
+.fav-container {
+  width: 100%;
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
