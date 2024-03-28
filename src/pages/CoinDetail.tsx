@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { getCoinData, settings } from "../service/storeCoins";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import { ifCoinMillion } from "../service/CalculationFunctions";
 
 interface Coin {
   id: number;
@@ -44,10 +45,13 @@ export const CoinDetail = () => {
           <Card.Text>{coin?.description}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroup.Item>Price: {coin?.price} USD</ListGroup.Item>
-          <ListGroup.Item>Market cap: {coin?.market_cap} USD</ListGroup.Item>
+          <ListGroup.Item>Price: {coin?.price.toFixed(2)} USD</ListGroup.Item>
           <ListGroup.Item>
-            In circulation {coin?.circulating_supply} Tokens
+            Market cap: {coin && ifCoinMillion(coin.market_cap)} USD
+          </ListGroup.Item>
+          <ListGroup.Item>
+            In circulation {coin && ifCoinMillion(coin.circulating_supply)}{" "}
+            Tokens
           </ListGroup.Item>
         </ListGroup>
         <Card.Body>

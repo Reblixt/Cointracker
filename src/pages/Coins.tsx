@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCarlFav } from "../service/storeCoins";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import { ifCoinMillion } from "../service/CalculationFunctions";
 
 interface Coin {
   name: string;
@@ -24,6 +25,7 @@ export const Coins = () => {
     };
     getFav();
   }, []);
+
   console.log(favCoins);
 
   return (
@@ -37,13 +39,17 @@ export const Coins = () => {
               <Card.Img variant="top" src={coin?.logo} alt={coin?.name} />
               <Card.Body>
                 <Card.Title>{coin?.name}</Card.Title>
-                <Card.Text>Price: {coin?.price} USD</Card.Text>
+                <Card.Text>
+                  Price: {coin && ifCoinMillion(coin.price)} USD
+                </Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroup.Item>Market Cap: {coin?.market_cap}</ListGroup.Item>
+                <ListGroup.Item>
+                  Market Cap: {coin && ifCoinMillion(coin.market_cap)}
+                </ListGroup.Item>
                 <ListGroup.Item>Rank: {coin?.rank}</ListGroup.Item>
                 <ListGroup.Item>
-                  Price Change last 24h {coin?.price_change_24h}%
+                  Price Change last 24h {coin?.price_change_24h.toFixed(2)}%
                 </ListGroup.Item>
               </ListGroup>
               <Card.Body>
