@@ -1,24 +1,27 @@
 export class CoinClass {
+  id: number;
   name: string;
   symbol: string;
   price: number;
-  marketCap: number;
+  market_cap: number;
   circulatingSupply: number;
-  image: string;
+  logo: string;
 
   constructor(
+    id: number,
     name: string,
     symbol: string,
     price: number,
-    marketCap: number,
+    market_cap: number,
     circulatingSupply: number,
-    image: string,
+    logo: string,
   ) {
+    this.id = id;
     this.name = name;
     this.symbol = symbol;
     this.price = price;
-    this.marketCap = marketCap;
+    this.market_cap = market_cap;
     this.circulatingSupply = circulatingSupply;
-    this.image = image;
+    this.logo = logo;
   }
 }

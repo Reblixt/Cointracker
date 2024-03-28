@@ -1,17 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CoinContext } from "../context/CoinsContext";
+import { ifCoinMillion } from "../service/CalculationFunctions";
 
-interface Coin {
-  id: number;
-  name: string;
-  symbol: string;
-  logo: string;
-  price_change_24h: number;
-}
+export const ListCoins = () => {
+  const { coinList } = useContext(CoinContext);
 
-export const ListCoins = ({ trending }: { trending: Coin[] }) => {
   return (
     <>
-      {trending.map((coin: Coin) => (
+      {coinList.slice(0, 50).map((coin) => (
         <li key={coin.id}>
           <div>
             <img src={coin.logo} alt={coin.name} />
@@ -19,7 +16,8 @@ export const ListCoins = ({ trending }: { trending: Coin[] }) => {
               {" "}
               {coin.name}: ({coin.symbol})
             </p>
-            <p>{coin.price_change_24h}%</p>
+            <p>Price {coin.price.toFixed(4)} USD</p>
+            <p>Market Cap {coin && ifCoinMillion(coin.market_cap)} USD</p>
           </div>
           <Link to={`/coins/${coin.name}`}>Läs mer...</Link>
         </li>

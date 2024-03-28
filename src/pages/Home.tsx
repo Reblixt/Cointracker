@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
-import { getData, settings } from "../service/storeCoins";
+import { useState } from "react";
 import { ListCoins } from "../components/ListCoins";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [search, setSearch] = useState("");
-  const [trending, setTrending] = useState([]);
-
-  useEffect(() => {
-    const getTrending = async () => {
-      const data = await getData(settings.TRENDING_UPL);
-      setTrending(data);
-      console.log(data);
-    };
-    getTrending();
-  }, []);
 
   return (
     <>
@@ -30,7 +19,7 @@ export const Home = () => {
 
       <h1>Trending coins</h1>
       <ul className="trending-coins">
-        <ListCoins trending={trending} />
+        <ListCoins />
       </ul>
     </>
   );
