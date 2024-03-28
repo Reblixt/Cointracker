@@ -1,12 +1,19 @@
 import { RouterProvider } from "react-router";
 import "./App.scss";
 import { router } from "./Router";
-//import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import { CoinContext, ICoinContext } from "./context/CoinsContext";
 
 function App() {
+  const [state, setState] = useState<ICoinContext>({
+    coinList: [],
+  });
+
   return (
     <>
-      <RouterProvider router={router} />
+      <CoinContext.Provider value={state}>
+        <RouterProvider router={router} />
+      </CoinContext.Provider>
     </>
   );
 }
