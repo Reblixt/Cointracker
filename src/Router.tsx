@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { ErrorPage } from "./pages/ErrorPage";
-import { Coins } from "./pages/Coins";
+import { FavoriteCoins } from "./pages/FavoriteCoins";
 import { CoinDetail } from "./pages/CoinDetail";
 
 export const router = createBrowserRouter([
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/coins", element: <Coins /> },
+      { path: "/favorite", element: <FavoriteCoins /> },
       { path: "/coins/:id", element: <CoinDetail /> },
     ],
   },

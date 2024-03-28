@@ -14,7 +14,7 @@ interface Coin {
   price_change_24h: number;
 }
 
-export const Coins = () => {
+export const FavoriteCoins = () => {
   const [favCoins, setFavCoins] = useState<Coin[]>([]);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import axios from "axios";
 const apiKey = "api=df3bfdc7-22ac-4efd-92c8-61b0f1e87585";
 
 export const settings = {
-  GETALLDATA_URL: `https://api.mobula.io/api/1/all?${apiKey}&fields=id%2Csymbol%2Clogo%2Cname%2Cmarket_cap%2Cblockchains%2Cwebsite%2Cprice`,
+  GETALLDATA_URL: `https://api.mobula.io/api/1/all?${apiKey}&fields=id%2Csymbol%2Clogo%2Cname%2Cmarket_cap%2Cblockchains%2Cwebsite%2Cprice%2Cprice_change_24h`,
   METADATA_URL: `https://api.mobula.io/api/1/metadata?${apiKey}&asset=`,
   TRENDING_UPL: `https://api.mobula.io/api/1/metadata/trendings?${apiKey}`,
   SEARCH_URL: `https://api.mobula.io/api/1/search?${apiKey}&input=`,
@@ -38,10 +38,11 @@ export const getCarlFav = async () => {
 export const getAllData = async () => {
   const response = await axios.get(settings.GETALLDATA_URL);
   const filteredData = response.data.data.filter(
-    (coins) => coins.market_cap !== 0,
+    (coins: any) => coins.market_cap !== 0,
   );
   const sortedData = filteredData.sort(
     (a: any, b: any) => b.market_cap - a.market_cap,
   );
-  return sortedData;
+  const websiteData = sortedData.filter((coins: any) => coins.website !== null);
+  return websiteData;
 };

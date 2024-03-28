@@ -8,7 +8,7 @@ export const Navbar = () => {
           <NavLink to="/">Trending</NavLink>
         </li>
         <li>
-          <NavLink to="/coins">My Favorites</NavLink>
+          <NavLink to="/favorite">My Favorites</NavLink>
         </li>
       </ul>
     </nav>

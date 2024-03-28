@@ -8,7 +8,7 @@ export const ListCoins = () => {
 
   return (
     <>
-      {coinList.slice(0, 50).map((coin) => (
+      {coinList.slice(0, 100).map((coin) => (
         <li key={coin.id}>
           <div>
             <img src={coin.logo} alt={coin.name} />
