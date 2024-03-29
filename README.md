@@ -27,6 +27,8 @@ The API comes from:
 
 3. Add a function to create a Favorite list of crypto ---- DONE
    3.5 store them in on a Blockchain.
+   3.6 Add a function to remove the coins from favorite list.
+   3.7 Modify the Add function so i cannot add a coin more than twice.
 
 4. Fix some naming scheme in the functions and variables.
 
