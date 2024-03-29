@@ -1,41 +1,62 @@
-import { useEffect, useState } from "react";
-import { getCarlFav } from "../service/storeCoins";
+import { useContext, useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ifCoinMillion } from "../service/CalculationFunctions";
-
-interface Coin {
-  name: string;
-  symbol: string;
-  logo: string;
-  price: number;
-  rank: number;
-  market_cap: number;
-  price_change_24h: number;
-}
+import { CoinContext } from "../context/CoinsContext";
+import { CoinClass } from "../models/CoinClass";
 
 export const FavoriteCoins = () => {
-  const [favCoins, setFavCoins] = useState<Coin[]>([]);
+  const [favCoins, setFavCoins] = useState<CoinClass[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const { coinList } = useContext(CoinContext);
 
-  useEffect(() => {
-    const getFav = async () => {
-      const response = await getCarlFav();
-      const coins = Object.values(response.data) as Coin[];
-      setFavCoins(coins);
-    };
-    getFav();
-  }, []);
+  const createFavCoinList = (searchTerm: string) => {
+    let coinIndex = coinList.findIndex(
+      (coin) => coin.name.toLowerCase() === searchTerm.trim().toLowerCase(),
+    );
 
-  console.log(favCoins);
+    if (coinIndex === -1) {
+      coinIndex = coinList.findIndex(
+        (coin) => coin.symbol.toLowerCase() === searchTerm.trim().toLowerCase(),
+      );
+    }
+
+    if (coinIndex !== -1) {
+      const favoriteCoin = { ...coinList[coinIndex], rank: coinIndex + 1 };
+      setFavCoins((prevFavCoins) => [...prevFavCoins, favoriteCoin]);
+
+      console.log(
+        `${favoriteCoin.name} is number ${coinIndex + 1} in the list based on market cap.`,
+      );
+    } else {
+      console.error("Coin not found with name or symbol:", searchTerm);
+    }
+  };
 
   return (
     <div className="fav-container">
       <h1>My favorite coins</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          createFavCoinList(search);
+
+          setSearch("");
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Add a coin"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button> Add Coin</button>
+      </form>
 
       <div className="fav-coins-container">
         {favCoins.map((coin) => {
           return (
-            <Card key={coin?.rank} style={{ width: "18rem" }}>
+            <Card key={coin?.id} style={{ width: "18rem" }}>
               <Card.Img variant="top" src={coin?.logo} alt={coin?.name} />
               <Card.Body>
                 <Card.Title>{coin?.name}</Card.Title>

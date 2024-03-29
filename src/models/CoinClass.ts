@@ -6,6 +6,8 @@ export class CoinClass {
   market_cap: number;
   circulatingSupply: number;
   logo: string;
+  price_change_24h: number;
+  rank: number;
 
   constructor(
     id: number,
@@ -15,6 +17,8 @@ export class CoinClass {
     market_cap: number,
     circulatingSupply: number,
     logo: string,
+    price_change_24h: number,
+    rank: number,
   ) {
     this.id = id;
     this.name = name;
@@ -23,5 +27,7 @@ export class CoinClass {
     this.market_cap = market_cap;
     this.circulatingSupply = circulatingSupply;
     this.logo = logo;
+    this.price_change_24h = price_change_24h;
+    this.rank = rank;
   }
 }
