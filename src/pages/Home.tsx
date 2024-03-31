@@ -19,7 +19,7 @@ export const Home = () => {
     } else {
       setFilteredCoins([]);
     }
-  }, 1000);
+  }, 500);
 
   useEffect(() => {
     updateSearch(search);
